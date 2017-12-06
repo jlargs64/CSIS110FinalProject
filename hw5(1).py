@@ -3,7 +3,6 @@
 #This program creates an animation based on the classic arcade game
 #Mortal Kombat with Sub Zero and Scorpion fighting
  
-# Just in case you need them (you might or might not)
 import random
 import os
 import math
@@ -45,8 +44,7 @@ def writeFrame(num, dir, pict):
 
 # create the animation
 def flick():
-  #Dr. Egan, you said to remind you to give me full E.C. for this!!
-  #Put the file address for your rect folder
+  #Make the os change to desired directory
   os.chdir("C:\\Users\\justi\\Dropbox (Siena College)\\CSIS 110 MM\\HW\\hw5\\frames")
   #Sets the directory to where we just changed it to
   directory = os.getcwd()
@@ -79,7 +77,7 @@ def flick():
     positionY1 = getHeight(canvas)/2
     positionX2 = getWidth(canvas)-75
     positionY2 = getHeight(canvas)/2
-    
+    #text changing sizes at different frame intervals
     if frameNum < 75:  
       style1 = makeStyle("Comic Sans", Font.BOLD, 34+frameNum/10)
       text = "Finish Him!"    
@@ -88,7 +86,7 @@ def flick():
       style1 = makeStyle("Comic Sans", Font.BOLD, 34-frameNum/10)
       text = "Finish Him!"   
       addTextWithStyle(canvas, getWidth(canvas)/3, getHeight(canvas)/4, text, style1,red)
-        
+     #The characters switch positions
     if frameNum<=80:
       if frameNum%25 ==0:
         copy(scorpionStart, canvas, positionX1, positionY1)
@@ -97,8 +95,10 @@ def flick():
         copy(scorpionEnd, canvas, positionX1, positionY1)
         copy(subZeroEnd, canvas, positionX2, positionY2)
     else:
+    #Characters move in circles
       copy(scorpionStart, canvas, positionX1 + int(10*sin(frameNum)), positionY1+int(10*cos(frameNum)))
       copy(subZeroStart, canvas, positionX2+int(10*cos(frameNum)), positionY2 - int(30*sin(frameNum)))
+    #Fireball moving and changing directions
     if frameNum <=30:  
       addOvalFilled (canvas, (positionX1+30)+frameNum*10, positionY1, 25, 25, red)
     else:
